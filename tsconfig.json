@@ -22,5 +22,13 @@
     "noUncheckedSideEffectImports": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/services/SearchBar", "src/components/App/MovieModal", "src/components/Esrc/components/Error, "Loader", "ErrorMessage"Message/Loaderssage", "src/components/App/Loader", "src/components/App/SearchBar", "src/components/App/MovieGrid", "src/components/App/SearchBar"]
+  "include": [
+    "src",
+    "src/services/SearchBar",
+    "MovieModal",
+    "ErrorMessage",
+    "Loader",
+    "SearchBar",
+    "MovieGrid"
+, "App.tsx"  ]
 }
