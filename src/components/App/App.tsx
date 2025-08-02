@@ -4,7 +4,7 @@ import MovieGrid from './MovieGrid/MovieGrid';
 import Loader from './Loader/Loader';
 import MovieModal from './MovieModal/MovieModal';
 import { Toaster, toast } from 'react-hot-toast';
-import type { Movie} from "../../types/movie"
+import type { Movie } from '../../../../types/movie';
 
 export default function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
