@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SearchBar from './SearchBar/SearchBar';
 import MovieGrid from './MovieGrid/MovieGrid';
 import Loader from './Loader/Loader';
 import MovieModal from './MovieModal/MovieModal';
 import { Toaster, toast } from 'react-hot-toast';
-import type { Movie , MovieType } from "././types/movie"
+import type { Movie} from "../../types/movie"
 
 export default function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
