@@ -25,10 +25,10 @@
   "include": [
     "src",
     "src/services/SearchBar",
-    "MovieModal",
-    "ErrorMessage",
-    "Loader",
-    "SearchBar",
+    "src/components/MovieModal",
+    "src/components/ErrorMessage",
+    "src/components/Loader",
+    "src/components/SearchBar",
     "MovieGrid"
-, "App.tsx"  ]
+, "src/components/App/App.tsx"  ]
 }
