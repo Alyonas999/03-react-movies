@@ -6,7 +6,7 @@ import type { Movie } from "../../types/movie";
 interface MovieModalProps {
   movie: Movie;
   onClose: () => void;
-} 
+}  
 
 const modalRoot = document.getElementById("modal-root") as HTMLElement;
 
