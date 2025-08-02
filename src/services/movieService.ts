@@ -2,12 +2,19 @@ import axios from "axios";
 import { type Movie } from "../types/movie";
 
 
-const tmdbApi = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+const url = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1';
+const options = {
+  method: 'GET',
   headers: {
-    Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
-  },
-});
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNjgxYWY4ZGRjOGU2NTg0M2NkZTU5MGE5YmE2OWMwNSIsIm5iZiI6MTc1NDEyNjg0Ni4wNDksInN1YiI6IjY4OGRkOWZlNzQzNTk0YmIxOGYzZGMyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WM_vBCDn2Lya1iHbvDx5ajawREIRwfvJE2gWVAat4DE'
+  }
+};
+
+fetch(url, options)
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.error(err));
 
 interface FetchMoviesResponse {
   page: number;
