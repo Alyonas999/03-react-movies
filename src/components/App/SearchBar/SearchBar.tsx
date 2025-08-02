@@ -1,4 +1,4 @@
-import css from "./SearchBar.module.css";
+import styles from './SearchBar.module.css';
 import { FormEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 
