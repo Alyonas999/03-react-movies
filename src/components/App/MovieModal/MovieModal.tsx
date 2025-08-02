@@ -1,43 +1,40 @@
-import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import css from './MovieModal.module.css';
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
+import css from "./MovieModal.module.css";
+import type { Movie } from "../../types/movie";
 
-type Movie = {
-  id: number;
-  title: string;
-  overview: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-};
-
-type Props = {
+interface MovieModalProps {
   movie: Movie;
   onClose: () => void;
-};
+}
 
-const modalRoot = document.querySelector('#modal-root') as HTMLElement;
+const modalRoot = document.getElementById("modal-root") as HTMLElement;
 
-export default function MovieModal({ movie, onClose }: Props) {
+export default function MovieModal({ movie, onClose }: MovieModalProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") {
+        onClose();
+      }
     };
 
-    const handleScrollBlock = () => {
-      document.body.style.overflow = 'hidden';
+    const handleScrollLock = () => {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "auto";
+      };
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    handleScrollBlock();
+    window.addEventListener("keydown", handleKeyDown);
+    const unlock = handleScrollLock();
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      window.removeEventListener("keydown", handleKeyDown);
+      unlock();
     };
   }, [onClose]);
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
@@ -53,13 +50,17 @@ export default function MovieModal({ movie, onClose }: Props) {
       <div className={css.modal}>
         <button
           className={css.closeButton}
-          aria-label="Close modal"
           onClick={onClose}
+          aria-label="Close modal"
         >
           &times;
         </button>
         <img
-          src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+          src={
+            movie.backdrop_path
+              ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+              : "https://via.placeholder.com/800x450?text=No+Image"
+          }
           alt={movie.title}
           className={css.image}
         />

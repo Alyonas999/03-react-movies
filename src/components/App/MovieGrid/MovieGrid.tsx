@@ -1,16 +1,16 @@
-import css from './MovieGrid.module.css';
-import type { Movie } from '../../../../types/movie';
+import css from "./MovieGrid.module.css";
+import { type Movie } from "../../types/movie";
 
 interface MovieGridProps {
   onSelect: (movie: Movie) => void;
   movies: Movie[];
 }
 
-export default function MovieGrid({ movies, onSelect }: MovieGridProps) {
-    const selectMovie = (index: number) => {
-        onSelect(movies[index]);
-    };
- return (
+export default function MovieGrid({ onSelect, movies }: MovieGridProps) {
+  const selectMovie = (index: number) => {
+    onSelect(movies[index]);
+  };
+  return (
     <ul className={css.grid}>
       {movies.map(({ id, title, poster_path }, i) => {
         return (
