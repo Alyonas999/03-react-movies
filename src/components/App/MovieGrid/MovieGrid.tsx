@@ -1,42 +1,36 @@
 import css from './MovieGrid.module.css';
-import type { Movie } from '../../../types/movie';
+import { type Movie } from '../../types/movie';
 
-type Movie = {
-  id: number;
-  title: string;
-  poster_path: string;
-};
-
-type Props = {
-  movies: Movie[];
+interface MovieGridProps {
   onSelect: (movie: Movie) => void;
-};
-export default function MovieGrid({ movies, onSelect }: Props) {
-  if (!movies.length) return null;
+  movies: Movie[];
+}
 
-  return (
+export default function MovieGrid({ movies, onSelect }: MovieGridProps) {
+    const selectMovie = (index: number) => {
+        onSelect(movies[index]);
+    };
+ return (
     <ul className={css.grid}>
-      {movies.map(movie => (
-        <li key={movie.id}>
-          <div
-            className={css.card}
-            onClick={() => onSelect(movie)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') onSelect(movie);
-            }}
-          >
-            <img
-              className={css.image}
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              loading="lazy"
-            />
-            <h2 className={css.title}>{movie.title}</h2>
-          </div>
-        </li>
-      ))}
+      {movies.map(({ id, title, poster_path }, i) => {
+        return (
+          <li key={id} onClick={() => selectMovie(i)}>
+            <div className={css.card}>
+              <img
+                className={css.image}
+                src={
+                  poster_path
+                    ? "https://image.tmdb.org/t/p/w500" + poster_path
+                    : "https://img.freepik.com/free-photo/assortment-cinema-elements-red-background-with-copy-space_23-2148457848.jpg"
+                }
+                alt={title}
+                loading="lazy"
+              />
+              <h2 className={css.title}>{title}</h2>
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 }
