@@ -29,6 +29,6 @@
     "src/components/ErrorMessage",
     "src/components/Loader",
     "src/components/SearchBar",
-    "MovieGrid"
-, "src/components/App/App.tsx"  ]
+    "src/components/MovieGrid"
+, "src/components/App/App.tsx", "src/components/MovieGrid", "src/components/App", "dist"  ]
 }
